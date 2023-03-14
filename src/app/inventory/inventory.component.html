@@ -1,0 +1,55 @@
+<table>
+    <tr>
+        <td style="text-align: center">
+            <img src="assets/fruits/{{ items[0].name }}.png" (click)="onSelectItem(0)">
+        </td>
+        <td style="text-align: center">
+            <img src="assets/fruits/{{ items[1].name }}.png" (click)="onSelectItem(1)">
+        </td>
+        <td style="text-align: center">
+            <img src="assets/fruits/{{ items[2].name }}.png" (click)="onSelectItem(2)">
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center"> 
+            <img src="assets/fruits/{{ items[3].name }}.png" (click)="onSelectItem(3)">
+        </td>
+        <td style="text-align: center">
+            <img src="assets/fruits/{{ items[4].name }}.png" (click)="onSelectItem(4)">
+        </td>
+        <td style="text-align: center">
+            <img src="assets/fruits/{{ items[5].name }}.png" (click)="onSelectItem(5)">
+        </td>
+    </tr>
+</table>
+
+<form [formGroup]="form" (ngSubmit)="processForm()">
+    <table>
+        <tr>
+            <td>
+                <label>Item: </label>
+            </td>
+            <td>
+                <input type="text" formControlName="item">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Unit Price: </label>
+            </td>
+            <td>
+                <input type="text" formControlName="unitPrice">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Quantity: </label>
+            </td>
+            <td>
+                <input type="number" min="0" max="10" step="1" formControlName="quantity">                                
+            </td>
+        </tr>
+    </table>
+    <button type="submit">Add</button>
+</form>
+
