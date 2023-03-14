@@ -59,5 +59,6 @@ export class CartComponent implements OnInit, OnChanges{
   processForm() {
     console.log(this.form.value);
     // console.log(this.cart.items.reduce((accumulator, x) => accumulator + (x.quantity*x.unitPrice), 0));
+    this.form.reset();
   }
 }
