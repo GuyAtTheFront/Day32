@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { Item } from '../models';
 
@@ -14,7 +14,7 @@ export class InventoryComponent implements OnInit {
   items: Item[] = [];
 
   @Output()
-  addedItem = new Subject<Item>();;
+  onAddItem = new Subject<Item>();;
 
   form!: FormGroup;
 
@@ -22,15 +22,15 @@ export class InventoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.createForm();
-    this.form.get("item")?.disable();
-    this.form.get("unitPrice")?.disable();
+    // this.form.get("name")?.disable();
+    // this.form.get("unitPrice")?.disable();
   }
 
   private createForm() {
     return this.form = this.fb.group({
-      item: this.fb.control<string>(""),
-      unitPrice: this.fb.control<string>(""),
-      quantity: this.fb.control<number>(0)
+      name: this.fb.control<string>("", [ Validators.required ]),
+      unitPrice: this.fb.control<string>("", [ Validators.required, Validators.min(0) ]),
+      quantity: this.fb.control<number>(1, [ Validators.required, Validators.min(1), Validators.max(10) ])
     })
   }
 
@@ -41,14 +41,14 @@ export class InventoryComponent implements OnInit {
   processForm() {
     // returns only quantity because fields disabled
     // console.log(this.form.getRawValue())
-    this.addedItem.next(<Item> this.form.getRawValue());
+    this.onAddItem.next(<Item> this.form.getRawValue());
   }
 
   private setFormValues(item: Item) {
     this.form.setValue({
-      item: item.name,
+      name: item.name,
       unitPrice: item.unitPrice,
-      quantity: 0
+      quantity: 1
     })
   }
 

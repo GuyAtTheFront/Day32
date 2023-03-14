@@ -1,1 +1,60 @@
-<p>cart works!</p>
+<h2> Cart </h2>
+<!-- {{ cart?.items  | json }} -->
+<form [formGroup]="form" (ngSubmit)="processForm()" *ngIf="cart">
+    <table>
+        <tr>
+            <td>
+                <label>Name: </label>
+            </td>
+            <td>
+                <input type="text" formControlName="name">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Address: </label>
+            </td>
+            <td>
+                <input type="text" formControlName="address">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Delivery: </label>
+            </td>
+            <td>
+                <input type="radio" name="delivery" value="am" formControlName="delivery" >
+                <label>AM</label>
+
+                <input type="radio" name="delivery" value="pm" formControlName="delivery">
+                <label>PM</label>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <hr>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody formArrayName="items">
+            <tr *ngFor = "let row of formArray.controls; let i = index" [formGroupName]="i">
+                <td><input type="text" readonly formControlName="item"></td>
+                <td><input type="text" readonly formControlName="unitPrice"></td>
+                <td><input type="text" readonly formControlName="quantity"></td>
+                <td><input type="text" readonly formControlName="totalPrice"></td>
+            </tr>
+        </tbody>
+        <tbody>
+            <td colspan="3" style="text-align: right">Total</td>
+            <td>{{ totalPrice }}</td>
+        </tbody>
+    </table>
+    <button type="submit" [disabled]="form.invalid">Checkout</button>
+</form>

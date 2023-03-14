@@ -1,0 +1,25 @@
+.main {
+    display: flex;
+}
+
+.left {
+    display: flex;
+    width: 35%;
+    margin: 10px;
+    /* align-items: center; */
+    justify-content: center;
+    background-color:aliceblue;
+    border: 1px solid black;
+    border-radius: 5%;
+}
+
+.right {
+    display: flex;
+    flex-grow: 1;
+    margin: 10px;
+    /* align-items: center; */
+    justify-content: center;
+    background-color:aliceblue;
+    border: 1px solid black;
+    border-radius: 5%;
+}

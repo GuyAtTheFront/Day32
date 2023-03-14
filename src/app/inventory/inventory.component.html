@@ -1,3 +1,6 @@
+<h2>Shop</h2>
+<!-- {{ items | json }} -->
+
 <table>
     <tr>
         <td style="text-align: center">
@@ -30,7 +33,7 @@
                 <label>Item: </label>
             </td>
             <td>
-                <input type="text" formControlName="item">
+                <input type="text" readonly formControlName="name">
             </td>
         </tr>
         <tr>
@@ -38,7 +41,7 @@
                 <label>Unit Price: </label>
             </td>
             <td>
-                <input type="text" formControlName="unitPrice">
+                <input type="text" readonly formControlName="unitPrice">
             </td>
         </tr>
         <tr>
@@ -50,6 +53,7 @@
             </td>
         </tr>
     </table>
-    <button type="submit">Add</button>
+    <button type="submit" [disabled]="form.invalid">Add</button>
+    <!-- {{ form?.get("name")?.valid }} -->
 </form>
 

@@ -1,8 +1,9 @@
+<div class="main">
+  <div class="left">
+  <app-inventory [items]="inventoryItems" (onAddItem)="addToCart($event)" ></app-inventory>
+  </div>
 
-<div>
-<app-inventory [items]="inventoryItems"></app-inventory>
-</div>
-
-<div>
-<app-cart></app-cart>
+  <div class="right">
+  <app-cart [cart] = "cart" ></app-cart>
+  </div>
 </div>
